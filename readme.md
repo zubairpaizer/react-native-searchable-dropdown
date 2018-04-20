@@ -1,0 +1,126 @@
+# React Native Searchable Dropdown
+
+Searchable Dropdown help you to search with in the dropdown. and you can pick single item.
+[example-url]: https://i.imgur.com/mHGaOX5.gif
+
+## Installation
+
+```bash
+npm install --save react-native-material-dropdown
+```
+## Properties
+<table>
+	<tr>
+		<th>Props</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+	   <td>items</td>
+	   <td>dropdown items</td>
+   </tr>
+	<tr>
+		<td>onTextChange</td>
+		<td>on text change you can passs onTextChange and catch the input text. </td>
+   </tr>
+   	<tr>
+		<td>onItemSelect</td>
+		<td>on item selection you can passs onItemSelect and catch the input item.   </td>
+   </tr>
+    <tr>
+		<td>containerStyle</td>
+		<td>component container style</td>
+   </tr>
+   <tr>
+		<td>textInputStyle</td>
+		<td>TextInput style</td>
+   </tr>
+    <tr>
+		<td>itemStyle</td>
+		<td>items on dropdown</td>
+   </tr>
+     <tr>
+		<td>itemTextStyle</td>
+		<td>item text</td>
+   </tr>   
+   <tr>
+	   <td>itemsContainerStyle</td>
+	   <td>items container style you can pass maxHeight to restrict the items dropdown hieght</td>
+   </tr>
+      <tr>
+	   <td>underlineColorAndroid</td>
+	   <td>TextInput underline height</td>
+   </tr>
+</table>
+
+# Example
+```javascript
+import React, { Component } from 'react';
+import  SearchableDropdown from 'react-native-searchable-dropdown';
+
+var  items  = [
+	{
+		id: 1,
+		name: 'Javascript'
+	},
+	{
+		id: 2,
+		name: 'Java'
+	},
+	{
+		id: 3,
+		name: 'Ruby'
+	},
+	{
+		id: 4,
+		name: 'React Native'
+	},
+	{
+		id: 5,
+		name: 'PHP'
+	},
+	{
+		id: 6,
+		name: 'Python'
+	},
+	{
+		id: 7,
+		name: 'Go'
+	},
+	{
+		id: 8,
+		name: 'Swift'
+	},
+];
+class Example extends Component {
+	  render() {
+		<SearchableDropDown
+			onTextChange={(text) =>  alert(text)}
+			onItemSelect={(item) =>  alert(JSON.stringify(item))}
+			containerStyle={{
+				padding: 5
+			}}
+			textInputStyle={{
+				padding: 12,
+				borderWidth: 1,
+				borderColor: '#ccc',
+				borderRadius: 5
+			}}
+			itemStyle={{
+				padding: 10,
+			    marginTop: 2,
+				backgroundColor: '#ddd',
+				borderColor: '#bbb',
+				borderWidth: 1,
+				borderRadius:5
+			}}
+			itemTextStyle={{
+			color: '#222'
+			}}
+			itemsContainerStyle={{
+				maxHeight: 140
+			}}
+			items={items}
+			underlineColorAndroid='transparent'>
+	}
+}
+```
