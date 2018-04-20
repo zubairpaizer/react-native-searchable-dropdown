@@ -1,7 +1,8 @@
-# React Native Searchable Dropdown
-
-Searchable Dropdown help you to search with in the dropdown. and you can pick single item.
 [example-url]: https://i.imgur.com/mHGaOX5.gif
+# React Native Searchable Dropdown
+Searchable Dropdown help you to search with in the dropdown. and you can pick single item.
+
+![example][example-url]
 
 ## Installation
 
