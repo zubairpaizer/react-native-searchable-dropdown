@@ -16,7 +16,7 @@ export default class SearchableDropDown extends Component{
     this.state = {
       item: {},
       listItems: [],
-      focus: false
+      focus: false,
     };
     this.renderList = this.renderList.bind(this);
   };
@@ -31,6 +31,15 @@ export default class SearchableDropDown extends Component{
             renderRow={this.renderAdress} />
         )
     }
+  }
+  
+  static getDerivedStateFromProps (props, store) {
+      let listItems = props.items ? props.items : [ { id: 0, 'name': '' } ];
+      if(props.resetValue === true){
+        return { listItems: listItems, item: { id: 0, name: '' } }
+      }else{
+        return { listItems: listItems }
+      }
   }
 
   componentDidMount(){
@@ -72,16 +81,21 @@ export default class SearchableDropDown extends Component{
         <TextInput
             underlineColorAndroid={this.props.underlineColorAndroid}
             onFocus={() => { 
-              this.setState({ focus: true })
+              this.setState({ focus: true, item: { name: '', id: 0 } })
             }}
+            onBlur={() => {
+              this.setState({ focus: false })
+            }}
+            ref={(e) => this.input = e}
             onChangeText={(text) => { 
               this.searchedItems(text)}
             }
             value={this.state.item.name}
             style={{ ...this.props.textInputStyle }}
-            placeholder="Type your adress here" />
+            placeholder={this.props.placeholder} />
         { this.renderList() }
       </View>
     );
   };
 }
+

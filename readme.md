@@ -2,6 +2,10 @@
 [npm-badge]: https://img.shields.io/npm/v/react-native-searchable-dropdown.svg?colorB=ff6d00
 [npm-url]: https://npmjs.com/package/react-native-searchable-dropdown
 [license-badge]: https://img.shields.io/npm/l/react-native-searchable-dropdown.svg?colorB=448aff
+
+[![npm][npm-badge]][npm-url]
+![license][license-badge]
+
 # React Native Searchable Dropdown
 Searchable Dropdown help you to search with in the dropdown. and you can pick single item.
 
@@ -45,7 +49,15 @@ npm install --save react-native-material-dropdown
      <tr>
 		<td>itemTextStyle</td>
 		<td>item text</td>
-   </tr>   
+   </tr>
+     <tr>
+		<td>resetValue</td>
+		<td>reset textInput Value with true and false state</td>
+   </tr>
+     <tr>
+		<td>placeholder</td>
+		<td>textInput placeholder</td>
+   </tr>        
    <tr>
 	   <td>itemsContainerStyle</td>
 	   <td>items container style you can pass maxHeight to restrict the items dropdown hieght</td>
@@ -124,7 +136,9 @@ class Example extends Component {
 				maxHeight: 140
 			}}
 			items={items}
-			underlineColorAndroid='transparent'>
+			placeholder="Placeholder."
+			resetValue={false}
+			underlineColorAndroid='transparent' />
 	}
 }
 ```
