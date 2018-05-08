@@ -14,7 +14,7 @@ Searchable Dropdown help you to search with in the dropdown. and you can pick si
 ## Installation
 
 ```bash
-npm install --save react-native-material-dropdown
+npm install --save react-native-searchable-dropdown
 ```
 ## Properties
 <table>
