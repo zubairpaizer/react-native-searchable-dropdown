@@ -32,7 +32,7 @@ export default class SearchableDropDown extends Component{
         )
     }
   }
-  
+
   static getDerivedStateFromProps (props, store) {
       let listItems = props.items ? props.items : [ { id: 0, 'name': '' } ];
       if(props.resetValue === true){
@@ -58,7 +58,7 @@ export default class SearchableDropDown extends Component{
       this.setState({listItems: ac, item: item });
       setTimeout(() => {
         this.props.onTextChange(searchedText);
-      }, 0);      
+      }, 0);
   };
 
   renderAdress = (item) => {
@@ -80,14 +80,21 @@ export default class SearchableDropDown extends Component{
       <View keyboardShouldpersist='always' style={{...this.props.containerStyle}}>
         <TextInput
             underlineColorAndroid={this.props.underlineColorAndroid}
-            onFocus={() => { 
-              this.setState({ focus: true, item: { name: '', id: 0 } })
+            onFocus={() => {
+              this.setState({
+                focus: true,
+                item: {
+                  name: '',
+                  id: 0
+                },
+                listItems: this.props.items
+              });
             }}
             onBlur={() => {
               this.setState({ focus: false })
             }}
             ref={(e) => this.input = e}
-            onChangeText={(text) => { 
+            onChangeText={(text) => {
               this.searchedItems(text)}
             }
             value={this.state.item.name}
@@ -98,4 +105,3 @@ export default class SearchableDropDown extends Component{
     );
   };
 }
-
