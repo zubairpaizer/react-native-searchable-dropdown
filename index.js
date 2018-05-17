@@ -35,15 +35,22 @@ export default class SearchableDropDown extends Component{
 
   static getDerivedStateFromProps (props, store) {
       let listItems = props.items ? props.items : [ { id: 0, 'name': '' } ];
-      if(props.resetValue === true){
-        return { listItems: listItems, item: { id: 0, name: '' } }
+      if (props.defaultIndex && listItems.length > props.defaultIndex) {
+        console.log('derived state from props', listItems[defaultIndex]);
+        return {
+          listItems,
+          item: listItems[defaultIndex]
+        };
+      }
+      else if(props.resetValue === true){
+        return { listItems, item: { id: 0, name: '' } };
       }else{
-        return { listItems: listItems }
+        return { listItems };
       }
   }
 
   componentDidMount(){
-    let listItems = this.props.items;
+    const listItems = this.props.items;
     this.setState({listItems});
   }
 
