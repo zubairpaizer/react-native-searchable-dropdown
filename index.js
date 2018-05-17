@@ -33,7 +33,7 @@ export default class SearchableDropDown extends Component{
     }
   }
 
-  static getDerivedStateFromProps (props, store) {
+/*  static getDerivedStateFromProps (props, store) {
       let listItems = props.items ? props.items : [ { id: 0, 'name': '' } ];
       if (props.defaultIndex && listItems.length > props.defaultIndex) {
         console.log('derived state from props', listItems[defaultIndex]);
@@ -47,11 +47,20 @@ export default class SearchableDropDown extends Component{
       }else{
         return { listItems };
       }
-  }
+  }*/
 
   componentDidMount(){
     const listItems = this.props.items;
-    this.setState({listItems});
+    const defaultIndex = this.props.defaultIndex;
+    if (defaultIndex && listItems.length > defaultIndex) {
+      this.setState({
+        listItems,
+        item: listItems[defaultIndex]
+      });
+    }
+    else {
+      this.setState({listItems});
+    }
   }
 
   searchedItems= (searchedText) => {
