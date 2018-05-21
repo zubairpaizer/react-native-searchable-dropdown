@@ -27,8 +27,12 @@ npm install --save react-native-searchable-dropdown
 	   <td>dropdown items</td>
    </tr>
 	<tr>
+	   <td>defaultIndex</td>
+	   <td>Default selected index of items. (optional)</td>
+   </tr>
+	<tr>
 		<td>onTextChange</td>
-		<td>on text change you can passs onTextChange and catch the input text. </td>
+		<td>on text change you can passs onTextChange and catch the input text. (optional)</td>
    </tr>
    	<tr>
 		<td>onItemSelect</td>
@@ -136,6 +140,7 @@ class Example extends Component {
 				maxHeight: 140
 			}}
 			items={items}
+			defaultIndex={2}
 			placeholder="Placeholder."
 			resetValue={false}
 			underlineColorAndroid='transparent' />
