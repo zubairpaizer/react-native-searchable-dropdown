@@ -103,6 +103,7 @@ export default class SearchableDropDown extends Component{
             }
             value={this.state.item.name}
             style={{ ...this.props.textInputStyle }}
+            placeholderTextColor={this.props.placeholderTextColor}
             placeholder={this.props.placeholder} />
         { this.renderList() }
       </View>

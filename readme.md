@@ -58,9 +58,13 @@ npm install --save react-native-searchable-dropdown
 		<td>resetValue</td>
 		<td>reset textInput Value with true and false state</td>
    </tr>
-     <tr>
+   <tr>
 		<td>placeholder</td>
 		<td>textInput placeholder</td>
+   </tr>        
+   <tr>
+		<td>placeholderTextColor</td>
+		<td>textInput placeholderTextColor</td>
    </tr>        
    <tr>
 	   <td>itemsContainerStyle</td>
