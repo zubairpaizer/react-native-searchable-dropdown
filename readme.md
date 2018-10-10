@@ -7,7 +7,7 @@
 ![license][license-badge]
 
 # React Native Searchable Dropdown
-Searchable Dropdown help you to search with in the dropdown. and you can pick single item.
+Searchable Dropdown to help you search with in the list (using `ListView`), and you can pick single item.
 
 ![example][example-url]
 
@@ -77,77 +77,74 @@ npm install --save react-native-searchable-dropdown
 </table>
 
 # Example
-```javascript
+```jsx
 import React, { Component } from 'react';
-import  SearchableDropdown from 'react-native-searchable-dropdown';
+import SearchableDropdown from 'react-native-searchable-dropdown';
 
-var  items  = [
-	{
-		id: 1,
-		name: 'Javascript'
-	},
-	{
-		id: 2,
-		name: 'Java'
-	},
-	{
-		id: 3,
-		name: 'Ruby'
-	},
-	{
-		id: 4,
-		name: 'React Native'
-	},
-	{
-		id: 5,
-		name: 'PHP'
-	},
-	{
-		id: 6,
-		name: 'Python'
-	},
-	{
-		id: 7,
-		name: 'Go'
-	},
-	{
-		id: 8,
-		name: 'Swift'
-	},
+var items = [
+  {
+    id: 1,
+    name: 'JavaScript',
+  },
+  {
+    id: 2,
+    name: 'Java',
+  },
+  {
+    id: 3,
+    name: 'Ruby',
+  },
+  {
+    id: 4,
+    name: 'React Native',
+  },
+  {
+    id: 5,
+    name: 'PHP',
+  },
+  {
+    id: 6,
+    name: 'Python',
+  },
+  {
+    id: 7,
+    name: 'Go',
+  },
+  {
+    id: 8,
+    name: 'Swift',
+  },
 ];
 class Example extends Component {
-	  render() {
-		<SearchableDropDown
-			onTextChange={(text) =>  alert(text)}
-			onItemSelect={(item) =>  alert(JSON.stringify(item))}
-			containerStyle={{
-				padding: 5
-			}}
-			textInputStyle={{
-				padding: 12,
-				borderWidth: 1,
-				borderColor: '#ccc',
-				borderRadius: 5
-			}}
-			itemStyle={{
-				padding: 10,
-			    marginTop: 2,
-				backgroundColor: '#ddd',
-				borderColor: '#bbb',
-				borderWidth: 1,
-				borderRadius:5
-			}}
-			itemTextStyle={{
-			color: '#222'
-			}}
-			itemsContainerStyle={{
-				maxHeight: 140
-			}}
-			items={items}
-			defaultIndex={2}
-			placeholder="Placeholder."
-			resetValue={false}
-			underlineColorAndroid='transparent' />
-	}
+  render() {
+    return (
+      <SearchableDropdown
+        onTextChange={text => alert(text)}
+        onItemSelect={item => alert(JSON.stringify(item))}
+        containerStyle={{ padding: 5 }}
+        textInputStyle={{
+          padding: 12,
+          borderWidth: 1,
+          borderColor: '#ccc',
+          borderRadius: 5,
+        }}
+        itemStyle={{
+          padding: 10,
+          marginTop: 2,
+          backgroundColor: '#ddd',
+          borderColor: '#bbb',
+          borderWidth: 1,
+          borderRadius: 5,
+        }}
+        itemTextStyle={{ color: '#222' }}
+        itemsContainerStyle={{ maxHeight: 140 }}
+        items={items}
+        defaultIndex={2}
+        placeholder="placeholder"
+        resetValue={false}
+        underlineColorAndroid="transparent"
+      />
+    );
+  }
 }
 ```
