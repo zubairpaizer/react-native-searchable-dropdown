@@ -7,7 +7,7 @@
 ![license][license-badge]
 
 # React Native Searchable Dropdown
-Searchable Dropdown to help you search with in the list (using `ListView`), and you can pick single item.
+Searchable Dropdown to help you search with in the list (using `ListView` and `FlatList`), and you can pick single item.
 
 ![example][example-url]
 
@@ -70,9 +70,13 @@ npm install --save react-native-searchable-dropdown
 	   <td>itemsContainerStyle</td>
 	   <td>items container style you can pass maxHeight to restrict the items dropdown hieght</td>
    </tr>
-      <tr>
+    <tr>
 	   <td>underlineColorAndroid</td>
 	   <td>TextInput underline height</td>
+   </tr>
+    <tr>
+	   <td>listType</td>
+	   <td>default will be FlatList or you can pass ListView</td>
    </tr>
 </table>
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   ListView,
+  FlatList,
   TextInput,
   View,
   TouchableOpacity,
@@ -31,6 +31,19 @@ export default class SearchableDropDown extends Component{
             renderRow={this.renderItems} />
         )
     }
+  }
+
+  renderFlatList(){
+    if(this.state.focus){
+      return (
+          <FlatList
+            style={{ ...this.props.itemsContainerStyle }}
+            keyboardShouldPersistTaps="always"
+            data={this.state.listItems}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({  item  }) => this.renderItems(item)} />
+         )
+     }
   }
 
   componentDidMount(){
@@ -79,6 +92,10 @@ export default class SearchableDropDown extends Component{
     );
   };
 
+  renderListType(){
+    return this.props.listType == 'ListView' ? this.renderList() : this.renderFlatList();
+  }
+
  render() {
     return (
       <View keyboardShouldpersist='always' style={{...this.props.containerStyle}}>
@@ -105,7 +122,7 @@ export default class SearchableDropDown extends Component{
             style={{ ...this.props.textInputStyle }}
             placeholderTextColor={this.props.placeholderTextColor}
             placeholder={this.props.placeholder} />
-        { this.renderList() }
+        { this.renderListType() }
       </View>
     );
   };
