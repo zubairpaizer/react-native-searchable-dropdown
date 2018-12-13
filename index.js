@@ -61,7 +61,7 @@ export default class SearchableDropDown extends Component{
   }
 
   searchedItems= (searchedText) => {
-      var ac = this.props.items.filter(function(item) {
+      var ac = this.props.items && this.props.items.filter(function(item) {
         return item.name.toLowerCase().indexOf(searchedText.toLowerCase()) > -1;
       });
       let item = {
