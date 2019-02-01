@@ -5,5 +5,9 @@
 [![npm][npm-badge]][npm-url]
 ![license][license-badge]
 
+# 1.0.7
+* resetValue prop can now be used
+* mispelled keyboardShouldPersist prop in render
+
 # 1.0.6
 * listType prop added default will be FlatList or you can pass ListView
