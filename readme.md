@@ -78,6 +78,14 @@ npm install --save react-native-searchable-dropdown
 	   <td>listType</td>
 	   <td>default will be FlatList or you can pass ListView</td>
    </tr>
+   <tr>
+	   <td>onFocus</td>
+	   <td>same as regular onFocus of TextInput</td>
+   </tr>
+   <tr>
+	   <td>onBlur</td>
+	   <td>same as regular onBlur of TextInput</td>
+   </tr>
 </table>
 
 # Example
