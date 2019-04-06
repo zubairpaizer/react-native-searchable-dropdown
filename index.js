@@ -26,6 +26,10 @@ export default class SearchableDropDown extends Component {
     };
   }
 
+  focus = () => {
+    this.input.focus();
+  }
+
   renderList = () => {
     if (this.state.focus) {
       return (
