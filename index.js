@@ -32,6 +32,7 @@ export default class SearchableDropDown extends Component {
         <ListView
           style={{ ...this.props.itemsContainerStyle }}
           keyboardShouldPersistTaps="always"
+          nestedScrollEnabled={true}
           dataSource={ds.cloneWithRows(this.state.listItems)}
           renderRow={this.renderItems}
         />
@@ -46,6 +47,7 @@ export default class SearchableDropDown extends Component {
           style={{ ...this.props.itemsContainerStyle }}
           keyboardShouldPersistTaps="always"
           data={this.state.listItems}
+          nestedScrollEnabled={true}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => this.renderItems(item)}
         />
