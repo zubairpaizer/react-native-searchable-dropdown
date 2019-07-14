@@ -123,11 +123,16 @@ export default class SearchableDropDown extends Component {
           ref={e => (this.input = e)}
           underlineColorAndroid={this.props.underlineColorAndroid}
           onFocus={() => {
+            this.props.onFocus && this.props.onFocus()
             this.setState({
               focus: true,
               item: defaultItemValue,
               listItems: this.props.items
             });
+          }}
+          onBlur={() => {
+            this.props.onBlur && this.props.onBlur()
+            this.setState({ focus: false })
           }}
           onChangeText={text => {
             this.searchedItems(text);
