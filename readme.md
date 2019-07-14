@@ -75,8 +75,14 @@ npm install --save react-native-searchable-dropdown
 	   <td>TextInput underline height</td>
    </tr>
     <tr>
-	   <td>listType</td>
-	   <td>default will be FlatList or you can pass ListView</td>
+	   <td>listProps</td>
+	  <td>
+      all supported (flatlist) props example: listProps={ nestedScrollEnabled: true }
+    </td>
+   </tr>
+    <tr>
+	   <td>setSort</td>
+	   <td>filter data on text changing example: setSort={(item, searchedText)=> item.name.toLowerCase().startsWith(searchedText.toLowerCase())}</td>
    </tr>
    <tr>
 	   <td>onFocus</td>

@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import {
   Text,
-  ListView,
   FlatList,
   TextInput,
   View,
   TouchableOpacity,
   Keyboard
 } from 'react-native';
-
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const defaultItemValue = {
   name: '',
@@ -26,30 +23,25 @@ export default class SearchableDropDown extends Component {
     };
   }
 
-  renderList = () => {
-    if (this.state.focus) {
-      return (
-        <ListView
-          style={{ ...this.props.itemsContainerStyle }}
-          keyboardShouldPersistTaps="always"
-          nestedScrollEnabled={true}
-          dataSource={ds.cloneWithRows(this.state.listItems)}
-          renderRow={this.renderItems}
-        />
-      );
-    }
-  };
-
   renderFlatList = () => {
     if (this.state.focus) {
+      const flatListPorps = { ...this.props.listProps };
+      const oldSupport = [
+        { key: 'keyboardShouldPersistTaps', val: 'always' }, 
+        { key: 'nestedScrollEnabled', val : false },
+        { key: 'style', val : { ...this.props.itemsContainerStyle } },
+        { key: 'data', val : this.state.listItems },
+        { key: 'keyExtractor', val : (item, index) => index.toString() },
+        { key: 'renderItem', val : ({ item }) => this.renderItems(item) },
+      ];
+      oldSupport.forEach((kv) => {
+        if(!Object.keys(flatListPorps).includes(kv.key)) {
+          flatListPorps[kv.key] = kv.val;
+        }
+      });
       return (
         <FlatList
-          style={{ ...this.props.itemsContainerStyle }}
-          keyboardShouldPersistTaps="always"
-          data={this.state.listItems}
-          nestedScrollEnabled={true}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => this.renderItems(item)}
+          { ...flatListPorps }
         />
       );
     }
@@ -70,8 +62,12 @@ export default class SearchableDropDown extends Component {
   };
 
   searchedItems = searchedText => {
-    var ac = this.props.items.filter(function(item) {
-      return item.name.toLowerCase().indexOf(searchedText.toLowerCase()) > -1;
+    let setSort = this.props.setSort;
+    if (!setSort && typeof setSort !== 'function') {
+        setSort = item => item.name.toLowerCase().indexOf(searchedText.toLowerCase()) > -1;
+    }
+    var ac = this.props.items.filter((item) => {
+      return setSort(item, searchedText);
     });
     let item = {
       id: -1,
@@ -110,9 +106,7 @@ export default class SearchableDropDown extends Component {
   };
 
   renderListType = () => {
-    return this.props.listType == 'ListView'
-      ? this.renderList()
-      : this.renderFlatList();
+    return this.renderFlatList();
   };
 
   render = () => {

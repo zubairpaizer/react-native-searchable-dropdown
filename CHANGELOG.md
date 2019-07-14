@@ -5,6 +5,12 @@
 [![npm][npm-badge]][npm-url]
 ![license][license-badge]
 
+# 1.0.8
+* ListView removed
+* listType prop removed
+* setSort props added by which you can filter data with your own callback
+* listProps by which you can pass all props of FlatList 
+
 # 1.0.7
 * resetValue prop can now be used
 * mispelled keyboardShouldPersist prop in render

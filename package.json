@@ -1,6 +1,6 @@
 {
   "name": "react-native-searchable-dropdown",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Searchable Dropdown",
   "main": "index.js",
   "scripts": {
