@@ -5,6 +5,10 @@
 [![npm][npm-badge]][npm-url]
 ![license][license-badge]
 
+# 1.0.9
+* multi selection added  
+* textInputProps by which you can pass all props of TextInput 
+
 # 1.0.8
 * ListView removed
 * listType prop removed

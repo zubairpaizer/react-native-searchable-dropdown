@@ -1,4 +1,6 @@
 [example-url]: https://i.imgur.com/mHGaOX5.gif
+[screenshot-1]: https://i.imgur.com/OrsBmik.png
+[screenshot-2]: https://i.imgur.com/yghQDw0.png
 [npm-badge]: https://img.shields.io/npm/v/react-native-searchable-dropdown.svg?colorB=ff6d00
 [npm-url]: https://npmjs.com/package/react-native-searchable-dropdown
 [license-badge]: https://img.shields.io/npm/l/react-native-searchable-dropdown.svg?colorB=448aff
@@ -7,9 +9,10 @@
 ![license][license-badge]
 
 # React Native Searchable Dropdown
-Searchable Dropdown to help you search with in the list (using `ListView` and `FlatList`), and you can pick single item.
+Searchable Dropdown to help you search with in the list (`FlatList`), and you can pick single item and multiple items.
 
 ![example][example-url]
+![example][screenshot-2]
 
 ## Installation
 
@@ -76,27 +79,43 @@ npm install --save react-native-searchable-dropdown
    </tr>
     <tr>
 	   <td>listProps</td>
+     <td>
+        all supported (FlatList) props example: textInputProps={ underlineColorAndroid: 'transparent' }
+     </td>
 	  <td>
-      all supported (flatlist) props example: listProps={ nestedScrollEnabled: true }
     </td>
+    <tr>
+      <td>textInputProps</td>
+      <td>
+	        all supported (flatlist) props example: listProps={ nestedScrollEnabled: true }
+      </td>
+   </tr>
    </tr>
     <tr>
 	   <td>setSort</td>
 	   <td>filter data on text changing example: setSort={(item, searchedText)=> item.name.toLowerCase().startsWith(searchedText.toLowerCase())}</td>
    </tr>
    <tr>
-	   <td>onFocus</td>
-	   <td>same as regular onFocus of TextInput</td>
+	   <td>multi</td>
+	   <td>boolean toggle multi selection</td>
    </tr>
    <tr>
-	   <td>onBlur</td>
-	   <td>same as regular onBlur of TextInput</td>
+	   <td>selectedItems</td>
+	   <td>selectedItems of multi selection note: work when if multi prop is true</td>
+   </tr>
+   <tr>
+    <td>chip</td>
+    <td>boolean toggle chip display mode note: work when if multi prop is true</td>
+   </tr>
+   <tr>
+    <td>onRemoveItem</td>
+    <td>{ (item, index) => { } } note: work when if multi prop is true</td>
    </tr>
 </table>
 
 # Example
 ```jsx
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
 var items = [
@@ -133,36 +152,118 @@ var items = [
     name: 'Swift',
   },
 ];
-class Example extends Component {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedItems: [
+        {
+          id: 7,
+          name: 'Go',
+        },
+        {
+          id: 8,
+          name: 'Swift',
+        }
+      ]
+    }
+  }
   render() {
-    return (
-      <SearchableDropdown
-        onTextChange={text => alert(text)}
-        onItemSelect={item => alert(JSON.stringify(item))}
-        containerStyle={{ padding: 5 }}
-        textInputStyle={{
-          padding: 12,
-          borderWidth: 1,
-          borderColor: '#ccc',
-          borderRadius: 5,
-        }}
-        itemStyle={{
-          padding: 10,
-          marginTop: 2,
-          backgroundColor: '#ddd',
-          borderColor: '#bbb',
-          borderWidth: 1,
-          borderRadius: 5,
-        }}
-        itemTextStyle={{ color: '#222' }}
-        itemsContainerStyle={{ maxHeight: 140 }}
-        items={items}
-        defaultIndex={2}
-        placeholder="placeholder"
-        resetValue={false}
-        underlineColorAndroid="transparent"
-      />
-    );
+  return (
+        <Fragment>
+          {/* Multi */}
+          <SearchableDropdown
+            multi={true}
+            selectedItems={this.state.selectedItems}
+            onItemSelect={(item) => {
+              const items = this.state.selectedItems;
+              items.push(item)
+              this.setState({ selectedItems: items });
+            }}
+            containerStyle={{ padding: 5 }}
+            onRemoveItem={(item, index) => {
+              const items = this.state.selectedItems.filter((sitem) => sitem.id !== item.id);
+              this.setState({ selectedItems: items });
+            }}
+            itemStyle={{
+              padding: 10,
+              marginTop: 2,
+              backgroundColor: '#ddd',
+              borderColor: '#bbb',
+              borderWidth: 1,
+              borderRadius: 5,
+            }}
+            itemTextStyle={{ color: '#222' }}
+            itemsContainerStyle={{ maxHeight: 140 }}
+            items={items}
+            defaultIndex={2}
+            chip={true}
+            resetValue={false}
+            textInputProps={
+              {
+                placeholder: "placeholder",
+                underlineColorAndroid: "transparent",
+                style: {
+                    padding: 12,
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    borderRadius: 5,
+                },
+                onTextChange: text => alert(text)
+              }
+            }
+            listProps={
+              {
+                nestedScrollEnabled: true,
+              }
+            }
+          />
+          {/* Single */}
+          <SearchableDropdown
+            onItemSelect={(item) => {
+              const items = this.state.selectedItems;
+              items.push(item)
+              this.setState({ selectedItems: items });
+            }}
+            containerStyle={{ padding: 5 }}
+            onRemoveItem={(item, index) => {
+              const items = this.state.selectedItems.filter((sitem) => sitem.id !== item.id);
+              this.setState({ selectedItems: items });
+            }}
+            itemStyle={{
+              padding: 10,
+              marginTop: 2,
+              backgroundColor: '#ddd',
+              borderColor: '#bbb',
+              borderWidth: 1,
+              borderRadius: 5,
+            }}
+            itemTextStyle={{ color: '#222' }}
+            itemsContainerStyle={{ maxHeight: 140 }}
+            items={items}
+            defaultIndex={2}
+            resetValue={false}
+            textInputProps={
+              {
+                placeholder: "placeholder",
+                underlineColorAndroid: "transparent",
+                style: {
+                    padding: 12,
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    borderRadius: 5,
+                },
+                onTextChange: text => alert(text)
+              }
+            }
+            listProps={
+              {
+                nestedScrollEnabled: true,
+              }
+            }
+        />
+      </Fragment>
+  );
   }
 }
 ```
