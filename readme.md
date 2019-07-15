@@ -80,14 +80,14 @@ npm install --save react-native-searchable-dropdown
     <tr>
 	   <td>listProps</td>
      <td>
-        all supported (FlatList) props example: textInputProps={ underlineColorAndroid: 'transparent' }
+        all supported (FlatList) props example: listProps={ nestedScrollEnabled: true }
      </td>
 	  <td>
     </td>
     <tr>
       <td>textInputProps</td>
       <td>
-	        all supported (flatlist) props example: listProps={ nestedScrollEnabled: true }
+          all supported (TextInput) props example: textInputProps={ underlineColorAndroid: 'transparent' }
       </td>
    </tr>
    </tr>

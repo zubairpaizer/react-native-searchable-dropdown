@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 
 const defaultItemValue = {
-  name: '',
-  id: 0
+  name: '', id: 0
 };
 
 export default class SearchableDropDown extends Component {
