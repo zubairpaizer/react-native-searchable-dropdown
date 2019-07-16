@@ -15,6 +15,11 @@ const defaultItemValue = {
 export default class SearchableDropDown extends Component {
   constructor(props) {
     super(props);
+    this.renderTextInput = this.renderTextInput.bind(this);
+    this.renderFlatList = this.renderFlatList.bind(this);
+    this.searchedItems = this.searchedItems.bind(this);
+    this.renderItems = this.renderItems.bind(this);
+    
     this.state = {
       item: {},
       listItems: [],
@@ -36,6 +41,10 @@ export default class SearchableDropDown extends Component {
       oldSupport.forEach((kv) => {
         if(!Object.keys(flatListPorps).includes(kv.key)) {
           flatListPorps[kv.key] = kv.val;
+        } else {
+          if(kv.key === 'style') {
+            flatListPorps['style'] = kv.val;
+          }
         }
       });
       return (
@@ -49,7 +58,6 @@ export default class SearchableDropDown extends Component {
   componentDidMount = () => {
     const listItems = this.props.items;
     const defaultIndex = this.props.defaultIndex;
-
     if (defaultIndex && listItems.length > defaultIndex) {
       this.setState({
         listItems,
@@ -63,7 +71,9 @@ export default class SearchableDropDown extends Component {
   searchedItems = searchedText => {
     let setSort = this.props.setSort;
     if (!setSort && typeof setSort !== 'function') {
-        setSort = item => item.name.toLowerCase().indexOf(searchedText.toLowerCase()) > -1;
+        setSort = (item, searchedText) => { 
+          return item.name.toLowerCase().indexOf(searchedText.toLowerCase()) > -1
+        };
     }
     var ac = this.props.items.filter((item) => {
       return setSort(item, searchedText);
@@ -73,8 +83,7 @@ export default class SearchableDropDown extends Component {
       name: searchedText
     };
     this.setState({ listItems: ac, item: item });
-    const onTextChange = this.props.onTextChange;
-
+    const onTextChange = this.props.onTextChange || this.props.textInputProps.onTextChange || this.props.onChangeText || this.props.textInputProps.onChangeText;
     if (onTextChange && typeof onTextChange === 'function') {
       setTimeout(() => {
         onTextChange(searchedText);
@@ -144,7 +153,7 @@ export default class SearchableDropDown extends Component {
   };
 
   renderTextInput = () => {
-    const textInputPorps = { ...this.props.textInputProps };
+    const textInputProps = { ...this.props.textInputProps };
     const oldSupport = [
       { key: 'ref', val: e => (this.input = e) }, 
       { key: 'onTextChange', val: (text) => { this.searchedItems(text) } }, 
@@ -185,13 +194,21 @@ export default class SearchableDropDown extends Component {
       }
     ];
     oldSupport.forEach((kv) => {
-      if(!Object.keys(textInputPorps).includes(kv.key)) {
-        textInputPorps[kv.key] = kv.val;
+      if(!Object.keys(textInputProps).includes(kv.key)) {
+        if(kv.key === 'onTextChange' || kv.key === 'onChangeText') {
+          textInputProps['onChangeText'] = kv.val;
+        } else {
+          textInputProps[kv.key] = kv.val;
+        }
+      } else {
+        if(kv.key === 'onTextChange' || kv.key === 'onChangeText') {
+          textInputProps['onChangeText'] = kv.val;
+        }
       }
     });
     return (
       <TextInput
-       { ...textInputPorps }
+       { ...textInputProps }
       />
     )
   }

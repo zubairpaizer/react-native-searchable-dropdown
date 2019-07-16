@@ -5,6 +5,9 @@
 [![npm][npm-badge]][npm-url]
 ![license][license-badge]
 
+# 1.1.1
+* bud removed of text changes props
+
 # 1.0.9
 * multi selection added  
 * textInputProps by which you can pass all props of TextInput 
