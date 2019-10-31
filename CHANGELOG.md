@@ -5,6 +5,9 @@
 [![npm][npm-badge]][npm-url]
 ![license][license-badge]
 
+# 1.1.2
+* provide support for 'accessible' and 'importantForAccessibility' props
+
 # 1.1.1
 * bud removed of text changes props
 

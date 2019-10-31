@@ -1,11 +1,41 @@
 {
-  "name": "react-native-searchable-dropdown",
-  "version": "1.1.1",
-  "description": "Searchable Dropdown",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_args": [
+    [
+      "react-native-searchable-dropdown@1.1.2",
+      "C:\\Users\\Mysterious Stranger\\Documents\\wpra\\WPRA React Native"
+    ]
+  ],
+  "_from": "react-native-searchable-dropdown@1.1.2",
+  "_id": "react-native-searchable-dropdown@1.1.2",
+  "_inBundle": false,
+  "_integrity": "sha512-A7vGyOlYGpXyMws71qwVuYwPzr7CXFDZfVFVhm44r3yxbohzpAC8PnoA644S6yUloyj9NauVNDcZTrVlcHVxcw==",
+  "_location": "/react-native-searchable-dropdown",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "react-native-searchable-dropdown@1.1.2",
+    "name": "react-native-searchable-dropdown",
+    "escapedName": "react-native-searchable-dropdown",
+    "rawSpec": "1.1.2",
+    "saveSpec": null,
+    "fetchSpec": "1.1.2"
   },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-searchable-dropdown/-/react-native-searchable-dropdown-1.1.2.tgz",
+  "_spec": "1.1.2",
+  "_where": "C:\\Users\\Mysterious Stranger\\Documents\\wpra\\WPRA React Native",
+  "author": {
+    "name": "Zubair Ibrahim",
+    "email": "zubair.paizer11@gmail.com.com"
+  },
+  "bugs": {
+    "url": "https://github.com/zubairpaizer/react-native-searchable-dropdown/issues"
+  },
+  "description": "Searchable Dropdown",
+  "homepage": "https://github.com/zubairpaizer/react-native-searchable-dropdown#readme",
   "keywords": [
     "react",
     "react-component",
@@ -25,10 +55,15 @@
     "react searchable list",
     "react auto search dropdown"
   ],
-  "author": "Zubair Ibrahim <zubair.paizer11@gmail.com.com>",
   "license": "ISC",
+  "main": "index.js",
+  "name": "react-native-searchable-dropdown",
   "repository": {
     "type": "git",
     "url": "git://github.com/zubairpaizer/react-native-searchable-dropdown.git"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.1.2"
 }
