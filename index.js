@@ -202,7 +202,7 @@ export default class SearchableDropDown extends Component {
         }
       } else {
         if(kv.key === 'onTextChange' || kv.key === 'onChangeText') {
-          textInputProps['onChangeText'] = kv.val;
+          textInputProps['onChangeText'] = textInputProps['onChangeText'] || kv.val;
         }
       }
     });
