@@ -111,6 +111,15 @@ npm install --save react-native-searchable-dropdown
     <td>onRemoveItem</td>
     <td>{ (item, index) => { } } note: work when if multi prop is true</td>
    </tr>
+   <tr>
+    <td>idValue</td>
+    <td>prop name of the dataset id value, default 'id'</td>
+   </tr>
+   <tr>
+    <td>nameValue</td>
+    <td>prop name of the dataset name value, default 'name'</td>
+   </tr>
+
 </table>
 
 # Example

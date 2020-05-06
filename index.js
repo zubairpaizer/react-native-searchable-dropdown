@@ -8,10 +8,6 @@ import {
   Keyboard
 } from 'react-native';
 
-const defaultItemValue = {
-  name: '', id: 0
-};
-
 export default class SearchableDropDown extends Component {
   constructor(props) {
     super(props);
@@ -61,7 +57,9 @@ export default class SearchableDropDown extends Component {
     if (defaultIndex && listItems.length > defaultIndex) {
       this.setState({
         listItems,
-        item: listItems[defaultIndex]
+        item: listItems[defaultIndex],
+        idValue: this.props.idValue || 'id',
+        nameValue: this.props.nameValue || 'name'
       });
     } else {
       this.setState({ listItems });
@@ -72,7 +70,7 @@ export default class SearchableDropDown extends Component {
     let setSort = this.props.setSort;
     if (!setSort && typeof setSort !== 'function') {
         setSort = (item, searchedText) => { 
-          return item.name.toLowerCase().indexOf(searchedText.toLowerCase()) > -1
+          return item[this.state.nameValue].toLowerCase().indexOf(searchedText.toLowerCase()) > -1
         };
     }
     var ac = this.props.items.filter((item) => {
@@ -94,11 +92,11 @@ export default class SearchableDropDown extends Component {
   renderItems = (item, index) => {
     if(this.props.multi && this.props.selectedItems && this.props.selectedItems.length > 0) {
       return (
-          this.props.selectedItems.find(sitem => sitem.id === item.id) 
+          this.props.selectedItems.find(sitem => sitem[this.state.idValue] === item[this.state.idValue]) 
           ? 
           <TouchableOpacity style={{ ...this.props.itemStyle, flex: 1, flexDirection: 'row' }}>
             <View style={{ flex: 0.9, flexDirection: 'row', alignItems: 'flex-start' }}>
-              <Text>{ item.name }</Text>
+              <Text>{ item[this.state.nameValue] }</Text>
             </View>
             <View style={{ flex: 0.1, flexDirection: 'row', alignItems: 'flex-end' }}>
               <TouchableOpacity onPress={() => setTimeout(() => { this.props.onRemoveItem(item, index) }, 0) } style={{ backgroundColor: '#f16d6b', alignItems: 'center', justifyContent: 'center', width: 25, height: 25, borderRadius: 100, marginLeft: 10}}>
@@ -116,7 +114,7 @@ export default class SearchableDropDown extends Component {
           }}
           style={{ ...this.props.itemStyle, flex: 1, flexDirection: 'row' }}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
-              <Text>{ item.name }</Text>
+              <Text>{ item[this.state.nameValue] }</Text>
             </View>
           </TouchableOpacity>
       )
@@ -130,18 +128,18 @@ export default class SearchableDropDown extends Component {
             setTimeout(() => {
               this.props.onItemSelect(item);
               if (this.props.resetValue) {
-                this.setState({ focus: true, item: defaultItemValue });
+                this.setState({ focus: true, item: {[this.state.nameValue]: '', [this.state.idValue]: 0} });
                 this.input.focus();
               }
             }, 0);
           }}
         >
           { 
-            this.props.selectedItems && this.props.selectedItems.length > 0 && this.props.selectedItems.find(x => x.id === item.id) 
+            this.props.selectedItems && this.props.selectedItems.length > 0 && this.props.selectedItems.find(x => x[this.state.idValue] === item[this.state.idValue]) 
             ?
-              <Text style={{ ...this.props.itemTextStyle }}>{item.name}</Text>
+              <Text style={{ ...this.props.itemTextStyle }}>{item[this.state.nameValue]}</Text>
             :
-              <Text style={{ ...this.props.itemTextStyle }}>{item.name}</Text>
+              <Text style={{ ...this.props.itemTextStyle }}>{item[this.state.nameValue]}</Text>
           }
         </TouchableOpacity>
       );
@@ -164,7 +162,7 @@ export default class SearchableDropDown extends Component {
           this.props.onFocus && this.props.onFocus()
           this.setState({
             focus: true,
-            item: defaultItemValue,
+            item: {[this.state.nameValue]: '', [this.state.idValue]: 0},
             listItems: this.props.items
           });
         } 
@@ -178,7 +176,7 @@ export default class SearchableDropDown extends Component {
       },
       {
         key: 'value',
-        val: this.state.item.name
+        val: this.state.item[this.state.nameValue]
       },
       {
         key: 'style',
@@ -232,7 +230,7 @@ export default class SearchableDropDown extends Component {
                  { items.map((item, index) => {
                      return (
                          <View key={index} style={{
-                                 width: (item.name.length * 8) + 60,
+                                 width: (item[this.state.nameValue].length * 8) + 60,
                                  justifyContent: 'center',
                                  flex: 0,
                                  backgroundColor: '#eee',
@@ -242,7 +240,7 @@ export default class SearchableDropDown extends Component {
                                  padding: 8,
                                  borderRadius: 15,
                              }}>
-                             <Text style={{ color: '#555' }}>{item.name}</Text>
+                             <Text style={{ color: '#555' }}>{item[this.state.nameValue]}</Text>
                              <TouchableOpacity onPress={() => setTimeout(() => { this.props.onRemoveItem(item, index) }, 0) } style={{ backgroundColor: '#f16d6b', alignItems: 'center', justifyContent: 'center', width: 25, height: 25, borderRadius: 100, marginLeft: 10}}>
                                  <Text>X</Text>
                              </TouchableOpacity>
