@@ -140,7 +140,7 @@ export default class SearchableDropDown extends Component {
       ) : (
         <TouchableOpacity
           onPress={() => {
-            this.setState({ item: item, focus: false });
+            this.setState({ item: item });
             setTimeout(() => {
               this.props.onItemSelect(item);
             }, 0);
@@ -212,6 +212,9 @@ export default class SearchableDropDown extends Component {
         key: 'onBlur',
         val: () => {
           this.props.onBlur && this.props.onBlur();
+          if (!this.props.keepFocused || this.props.keepFocused == false) {
+            this.setState({ focus: false });
+          }
         },
       },
       {
