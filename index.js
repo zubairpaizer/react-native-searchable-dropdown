@@ -164,8 +164,7 @@ export default class SearchableDropDown extends Component {
             setTimeout(() => {
               this.props.onItemSelect(item);
               if (this.props.resetValue) {
-                this.setState({ focus: true, item: defaultItemValue });
-                this.input.focus();
+                this.setState({ focus: false, item: defaultItemValue });
               }
             }, 0);
           }}
