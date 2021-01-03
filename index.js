@@ -19,7 +19,6 @@ export default class SearchableDropDown extends Component {
     this.renderFlatList = this.renderFlatList.bind(this);
     this.searchedItems = this.searchedItems.bind(this);
     this.renderItems = this.renderItems.bind(this);
-    
     this.state = {
       item: {},
       listItems: [],
@@ -172,8 +171,8 @@ export default class SearchableDropDown extends Component {
       {
         key: 'onBlur',
         val: () => {
-          this.props.onBlur && this.props.onBlur()
-          this.setState({ focus: false })
+          this.props.onBlur && this.props.onBlur(this);
+          this.setState({ focus: false, item: this.props.selectedItems });
         }
       },
       {
@@ -208,7 +207,17 @@ export default class SearchableDropDown extends Component {
     });
     return (
       <TextInput
-       { ...textInputProps }
+      { ...textInputProps }
+      onBlur={(e) => {
+        if (this.props.onBlur) {
+          this.props.onBlur(e);
+        }
+        if (this.props.textInputProps && this.props.textInputProps.onBlur) {
+          this.props.textInputProps.onBlur(e);
+        }
+        this.setState({ focus: false, item: this.props.selectedItems });
+      }
+      }
       />
     )
   }
