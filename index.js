@@ -177,7 +177,7 @@ export default class SearchableDropDown extends Component {
       },
       {
         key: 'value',
-        val: this.state.item.name
+        val: this.state.item ? this.state.item.name : ''
       },
       {
         key: 'style',
@@ -235,7 +235,7 @@ export default class SearchableDropDown extends Component {
     );
   };
   renderSelectedItems(){
-    let items = this.props.selectedItems;
+    let items = this.props.selectedItems || [];
     if(items !== undefined && items.length > 0 && this.props.chip && this.props.multi){
      return  <View style={{flexDirection: 'row',  flexWrap: 'wrap', paddingBottom: 10, marginTop: 5 }}>
                  { items.map((item, index) => {
