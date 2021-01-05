@@ -57,7 +57,7 @@ export default class SearchableDropDown extends Component {
   componentDidMount = () => {
     const listItems = this.props.items;
     const defaultIndex = this.props.defaultIndex;
-    if (defaultIndex && listItems.length > defaultIndex) {
+    if (!isNaN(defaultIndex) && listItems.length > defaultIndex) {
       this.setState({
         listItems,
         item: listItems[defaultIndex]
