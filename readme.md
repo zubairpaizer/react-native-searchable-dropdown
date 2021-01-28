@@ -267,3 +267,10 @@ class App extends React.Component {
   }
 }
 ```
+
+To add a Searchable Dropdown within a `<ScrollView>`, add the `keyboardShouldPersistTaps` parameter to `handled` as shown below. If you do not, the item within the Searchable Dropdown will not be selected.
+```jsx
+<ScrollView keyboardShouldPersistTaps="handled">
+  <SearchableDropdown ... />
+</ScrollView>
+```
