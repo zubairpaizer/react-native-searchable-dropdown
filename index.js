@@ -57,6 +57,13 @@ export default class SearchableDropDown extends Component {
   componentDidMount = () => {
     const listItems = this.props.items;
     const defaultIndex = this.props.defaultIndex;
+    //show the items on render , we dont need to focus on the input to display the items
+     if(this.props.showItemsOnRender === true ){
+      this.setState({focus : true })
+    }
+     
+     
+    
     if (defaultIndex && listItems.length > defaultIndex) {
       this.setState({
         listItems,
