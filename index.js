@@ -161,13 +161,22 @@ export default class SearchableDropDown extends Component {
         key: 'onFocus', 
         val: () => {
           this.props.onFocus && this.props.onFocus()
-          this.setState({
-            focus: true,
-            item: defaultItemValue,
-            listItems: this.props.items
-          });
-        } 
-      }, 
+          if (typeof (this.props.multi) == 'undefined' || (typeof (this.props.multi) != 'undefined' && this.props.multi == false)) {
+            const lastValue = this.props.selectedItems[0]
+            this.setState({
+              focus: true,
+              item: !lastValue?.name.trim() ? defaultItemValue : lastValue,
+              listItems: this.props.items
+            });
+          } else {
+            this.setState({
+              focus: true},
+              item: defaultItemValue,
+              listItems: this.props.items
+            });
+          }
+        }
+      },
       {
         key: 'onBlur',
         val: () => {
@@ -215,7 +224,11 @@ export default class SearchableDropDown extends Component {
         if (this.props.textInputProps && this.props.textInputProps.onBlur) {
           this.props.textInputProps.onBlur(e);
         }
-        this.setState({ focus: false, item: this.props.selectedItems });
+        if ((typeof (this.props.multi) == 'undefined') || (typeof (this.props.multi) != 'undefined' && this.props.multi == false)) {
+          this.setState({ focus: false, item: this.props.selectedItems[0] });
+        } else {
+          this.setState({ focus: false, item: this.props.selectedItems });
+        }
       }
       }
       />
